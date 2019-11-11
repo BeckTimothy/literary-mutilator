@@ -18,25 +18,25 @@ function createAnagram(string) {
 	return strArr.join(' ');
 }
 
+/**
+ * function that 'encrypts' a string with ROT13
+ * @param string that needs to be 'encrypted'
+ * @returns {string} ROT13 'encrypted' string
+ */
 let test = "Abcdefghijklm nOPQRSTUVWXYZ";
 function encrypt(string) {
-	//encrypt using ROT13
+	//turn the string into an array to loop through
 	let explodedStr = string.split('');
 	for (i=0; i < explodedStr.length; i++) {
 		let char = explodedStr[i];
+		//if character is on the lower half of the alphabet add 13 to its charcode
 		if (char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 77 || char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 109) {
 			explodedStr[i] = explodedStr[i].replace(explodedStr[i], String.fromCharCode(char.charCodeAt(0) + 13));
+			//if character is on the upper half of the alphabet subtract 13 from its charcode
 		}else if(char.charCodeAt(0) >= 78 && char.charCodeAt(0) <=90 || char.charCodeAt(0) >= 110 && char.charCodeAt(0) <= 122) {
 			explodedStr[i] = explodedStr[i].replace(explodedStr[i], String.fromCharCode(char.charCodeAt(0) - 13));
 		}
 	}
+	// return the modified array as a string
 	return explodedStr.join('');
 }
-console.log(encrypt(test));
-
-// plus 13 chars -> 65-78 && 97-110
-// minus 13 chars -> 79-90 && 111-122
-
-//space : 32
-//capital letters: A-Z : 65-90
-//lowercase letters a-z : 97-122
