@@ -1,4 +1,41 @@
+const fetch = require("node-fetch");
 
+/**
+ * Finds all instances of param2 inside param1 and replaces them with param3
+ *
+ * @param string to mutilate
+ * @param searchFor string of characters we are searching for
+ * @param replaceWith string of characters we are replacing with
+ * @returns {string} new string that has replaced the searched for characters
+ */
+function findAndReplace(string, searchFor, replaceWith) {
+	//splits the string into an array of strings cut off at the searchFor content
+	let arr = string.split(searchFor);
+	//rejoins array back into new string with the replaceWith strings in between
+	return arr.join(replaceWith);
+}
+
+/**
+ * fisher-yates shuffle for an even distribution of odds during shuffling to achieve near-true randomness
+ * @param string string to be shuffled
+ * @returns {string} that has been shuffled
+ */
+function shuffle(string) {
+	//split the string into an array
+	let arr = string.split(' ');
+	//create an index based off the length of the entire aray
+	let currentIndex = arr.length;
+	//for loop through the entire array, repositioning items randomly as we loop
+	for (i = 0; i < currentIndex; i++) {
+	//create a random index
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		//put current index in a temp value then replace it with randomly selected index
+		tempValue = arr[currentIndex];
+		arr[currentIndex] = arr[randomIndex];
+		arr[randomIndex] = tempValue;
+	}
+		return arr.join(' ');
+}
 
 /**
  * function that turns a string into an anagram-ized version of the string
@@ -23,7 +60,6 @@ function createAnagram(string) {
  * @param string that needs to be 'encrypted'
  * @returns {string} ROT13 'encrypted' string
  */
-let test = "Abcdefghijklm nOPQRSTUVWXYZ";
 function encrypt(string) {
 	//turn the string into an array to loop through
 	let explodedStr = string.split('');
@@ -39,4 +75,18 @@ function encrypt(string) {
 	}
 	// return the modified array as a string
 	return explodedStr.join('');
+}
+
+/**
+ *dead code
+ * @returns {Promise<Object>}
+ */
+async function loadaPTag() {
+
+	let ranNum = Math.floor(Math.random() * 500);
+	let fetchInput = `https://jsonplaceholder.typicode.com/comments/${ranNum}`;
+	let response = await fetch(fetchInput);
+	let data = await response.json();
+	var stringToReturn = data.body;
+	return stringToReturn.valueOf();
 }
