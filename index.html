@@ -3,17 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Literary-Mutilator</title>
+	<script rel="script" src="./scripts.js"></script>
 </head>
 <body>
 <p id="para1">Lorem ipsum dolor amet banjo taiyaki direct trade, shoreditch hella swag gastropub. Next level hella tattooed PBR&B YOLO wolf kogi meggings pinterest vexillologist. Swag microdosing cloud bread, vaporware flexitarian 90's poutine gochujang. Marfa bespoke +1, tofu trust fund fanny pack microdosing next level tumeric pug gentrify iPhone cronut butcher irony. You probably haven't heard of them distillery quinoa venmo, seitan snackwave gastropub roof party.</p>
 <p id="para2">Master cleanse mumblecore occupy health goth live-edge. Stumptown prism street art schlitz kickstarter shoreditch mustache flannel jianbing vinyl. Four dollar toast taxidermy etsy tumeric hammock taiyaki. Unicorn photo booth you probably haven't heard of them art party sustainable jean shorts aesthetic vinyl glossier before they sold out plaid. Trust fund fam crucifix mlkshk. Forage kogi tbh taxidermy.</p>
 <p id="para3">Drinking vinegar prism master cleanse kickstarter dreamcatcher food truck. Lumbersexual stumptown meh letterpress keffiyeh raclette. Flannel four loko actually humblebrag live-edge gastropub polaroid butcher slow-carb plaid. Raw denim austin gluten-free bicycle rights tousled, DIY banjo bitters before they sold out fashion axe trust fund unicorn pinterest squid. Direct trade normcore post-ironic, marfa snackwave irony mumblecore venmo. Subway tile knausgaard brunch, neutra wolf post-ironic vice quinoa. Brooklyn irony cloud bread thundercats succulents church-key photo booth sriracha banjo coloring book cold-pressed hashtag migas.</p>
 
-<form>
-	<input type="radio" id="option1" name="mutilator" value="findAndReplace"> <label for="option1">Find And Replace</label><br>
-	<input type="radio" id="option2" name="mutilator" value="createAnagrams"> <label for="option2">Create Anagram</label><br>
-	<input type="radio" id="option3" name="mutilator" value="encryptROT13"> <label for="option3">Encrypt with ROT13</label><br>
-	<input type="radio" id="option4" name="mutilator" value="leadNewParagraph"> <label for="option4">Load New Paragraph</label><br>
+<form id="myform">
+	<p>Select a paragraph to mutilate:</p>
+	<input type="checkbox" id="selectPara1"><label for="selectPara1">Paragraph 1</label><br>
+	<input type="checkbox" id="selectPara2"><label for="selectPara2">Paragraph 2</label><br>
+	<input type="checkbox" id="selectPara3"><label for="selectPara3">Paragraph 3</label><br><br>
+	<button type="button" id="findAndReplace" name="mutilator" value="findAndReplace"> Find And Replace</button><br>
+	<label for="find"> Find in paragraph:</label><input type="text" id="find"><br>
+	<label for="replace"> Replace with:</label><input type="text" id="replace"><br>
+	<button type="button" id="shuffle" name="mutilator" value="shuffle">Shuffle</button><br>
+	<button type="button" id="createAnagrams" name="mutilator" value="createAnagrams">Anagramize</button><br>
+	<button type="button" id="encryptROT13" name="mutilator" value="encryptROT13"> Encrypt</button><br>
 </form>
 
 <script>

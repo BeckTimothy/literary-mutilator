@@ -1,4 +1,66 @@
-const fetch = require("node-fetch");
+//initialize script after page loads
+window.onload = function () {
+	initMutilator();
+};
+
+function initMutilator() {
+	let form = document.getElementById("myform");
+	form.addEventListener("click", (event) => {
+		handleForm(event, form);
+	});
+}
+
+function handleForm(event, formRef) {
+	if(event.preventDefault) {
+		event.preventDefault();
+	}
+	paragraphSelector();
+	return false;
+}
+
+function paragraphSelector() {
+	let paragraphOne = document.getElementById('para1'),
+	 paragraphTwo = document.getElementById('para2'),
+	 paragraphThree = document.getElementById('para3');
+	let target = paragraphOne;
+	mutilateForm(target);
+
+}
+
+function mutilateForm(target) {
+	//add event listeners
+
+	let findAndReplaceRadio = document.getElementById('findAndReplace');
+	findAndReplaceRadio.addEventListener("click", () => {setFindAndReplace(target);
+	});
+	let shuffleRadio = document.getElementById('shuffle');
+	shuffleRadio.addEventListener("click", () => {setShuffle(target);
+	});
+	let anagramRadio = document.getElementById('createAnagrams');
+	anagramRadio.addEventListener("click", () => {setAnagram(target);
+	});
+	let encryptRadio = document.getElementById('encryptROT13');
+	encryptRadio.addEventListener("click", () => {setEncrypt(target);
+	});
+}
+
+function setShuffle(target) {
+	target.innerText = shuffle(target.innerText);
+}
+
+function setAnagram(target) {
+	target.innerText = createAnagram(target.innerText);
+}
+
+function setEncrypt(target) {
+	target.innerText = encrypt(target.innerText);
+}
+
+function setFindAndReplace(target) {
+	let findStr = document.getElementById('find');
+	let replaceStr = document.getElementById('replace');
+	target.innerText = findAndReplace(target.innerText, findStr.value, replaceStr.value);
+}
 
 /**
  * Finds all instances of param2 inside param1 and replaces them with param3
@@ -34,7 +96,7 @@ function shuffle(string) {
 		arr[currentIndex] = arr[randomIndex];
 		arr[randomIndex] = tempValue;
 	}
-		return arr.join(' ');
+	return newArr = arr.join(' ');
 }
 
 /**
@@ -75,18 +137,4 @@ function encrypt(string) {
 	}
 	// return the modified array as a string
 	return explodedStr.join('');
-}
-
-/**
- *dead code
- * @returns {Promise<Object>}
- */
-async function loadaPTag() {
-
-	let ranNum = Math.floor(Math.random() * 500);
-	let fetchInput = `https://jsonplaceholder.typicode.com/comments/${ranNum}`;
-	let response = await fetch(fetchInput);
-	let data = await response.json();
-	var stringToReturn = data.body;
-	return stringToReturn.valueOf();
 }
